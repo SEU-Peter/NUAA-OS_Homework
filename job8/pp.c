@@ -25,7 +25,7 @@
 pthread_mutex_t mutex;
 pthread_cond_t wait_ping;
 pthread_cond_t wait_pong;
-int flag=0;
+int flag=1;
 
 
 void *ping(void *arg)
@@ -36,6 +36,7 @@ void *ping(void *arg)
         if(flag==0)
             pthread_cond_wait(&wait_pong, &mutex);
         printf("ping\n");
+        sleep(1);
         flag=0;
         pthread_cond_signal(&wait_ping);
         pthread_mutex_unlock(&mutex);
@@ -52,6 +53,7 @@ void *pong(void *arg)
         if(flag==1)
             pthread_cond_wait(&wait_ping, &mutex);
         printf("pong\n");
+        sleep(1);
         flag=1;
         pthread_cond_signal(&wait_pong);
         pthread_mutex_unlock(&mutex);
