@@ -75,7 +75,7 @@ void print_user(){
         char path_name[MAX_PATH_LEN];
         getcwd(path_name,MAX_PATH_LEN);
         pwd=getpwuid(getuid());
-        printf("%s@kali:%s$ ",pwd->pw_name,path_name);
+        printf("%s@:%s$ ",pwd->pw_name,path_name);
 }
 
 void get_cmd(){
